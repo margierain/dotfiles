@@ -89,6 +89,18 @@ set_shell() {
   if sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"; then
     printf " ${GREEN}✔︎${NORMAL}\n"
   fi
+
+  # Zsh Autosuggestions
+  ZSH_AUTOSUGGESTIONS_DIR="$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+  if [ ! -d "$ZSH_AUTOSUGGESTIONS_DIR" ]; then
+      sudo git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_AUTOSUGGESTIONS_DIR
+  fi
+
+  # setup zsh theme
+  printf "\n${CYAN}Installing zsh-theme${NORMAL}\n"
+  if sh -c "$(mkdir -p $ZSH_CUSTOM/themes && sudo curl -o $ZSH_CUSTOM/themes/rafiki.zsh-theme https://raw.githubusercontent.com/NdagiStanley/rafiki-zsh/own-editions/rafiki.zsh-theme)"; then
+    printf " ${GREEN}✔︎${NORMAL}\n"
+  fi
 }
 
 setup_languages() {
